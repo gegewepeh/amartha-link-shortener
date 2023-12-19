@@ -10,7 +10,7 @@ func vOneRoutes(router *mux.Router) {
 	vOneZeroRouter := router.PathPrefix("/v1").Subrouter()
 	vOneZeroRouter.Handle("/links", network.HTTPHandler(getAllLinks)).Methods("GET")
 	vOneZeroRouter.Handle("/slug/{id}", network.HTTPHandler(getBySlugId)).Methods("GET")
-	vOneZeroRouter.Handle("/slug", network.HTTPHandler(createSlug)).Methods("POST")
+	vOneZeroRouter.Handle("/slugs", network.HTTPHandler(createSlug)).Methods("POST")
 	vOneZeroRouter.Handle("/slug/{id}", network.HTTPHandler(updateSlug)).Methods("PUT")
 	vOneZeroRouter.Handle("/users", network.HTTPHandler(createUser)).Methods("POST")
 }

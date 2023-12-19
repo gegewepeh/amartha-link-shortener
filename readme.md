@@ -5,7 +5,7 @@ CREATE TABLE users (
 	"username" VARCHAR ( 50 ) UNIQUE NOT NULL,
 	"password" VARCHAR ( 50 ),
 	"createdAt" TIMESTAMPTZ NOT NULL,
-    "updatedAt" TIMESTAMPTZ NOT NULL
+	"updatedAt" TIMESTAMPTZ NOT NULL
 );
 ```
 
@@ -44,7 +44,7 @@ Body JSON example:
 ```
 
 #### Create Slug
-POST {{host}}/link-shortener/v1/slug
+POST {{host}}/link-shortener/v1/slugs
 
 Body JSON example:
 ```
