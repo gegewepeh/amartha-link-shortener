@@ -17,7 +17,7 @@ CREATE TABLE links (
 	slug VARCHAR ( 6 ) UNIQUE NOT NULL,
 	visit INT4 NOT NULL,
 	"createdAt" TIMESTAMPTZ NOT NULL,
-    "updatedAt" TIMESTAMPTZ NOT NULL
+	"updatedAt" TIMESTAMPTZ NOT NULL
 );
 ```
 

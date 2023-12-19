@@ -44,7 +44,7 @@ func (pool *Pool) GetBySlugId(ctx context.Context, id string) (*models.Link, *ut
 	var visit int
 
 	queryUpdate := `UPDATE links
-	SET visit = visit + 1
+	SET visit = visit + 1, "updatedAt" = NOW()
 	WHERE slug = $1
 	RETURNING "fullLink", "visit"`
 
@@ -82,7 +82,7 @@ func (pool *Pool) UpdateSlugId(ctx context.Context, oldSlug string, newSlug stri
 	var visit int
 
 	queryUpdate := `UPDATE links
-	SET slug = $1, visit = 0
+	SET slug = $1, visit = 0, "updatedAt" = NOW()
 	WHERE slug = $2 AND "userId" = $3
 	RETURNING "fullLink", "visit", "slug"`
 
