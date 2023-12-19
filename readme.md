@@ -28,11 +28,16 @@ CREATE TABLE links (
 
 ## Available Endpoint
 
-#### Show ALL Links in logs
-GET {{host}}/link-shortener/v1/links
+#### Create User
+POST {{host}}/link-shortener/v1/slug
 
-#### Show full link with slug (will count as 1 visit)
-GET {{host}}/link-shortener/v1/slug/:id
+Body JSON example:
+```
+{
+    "username": "testing",
+    "password": "12345678"
+}
+```
 
 #### Create Slug
 POST {{host}}/link-shortener/v1/slug
@@ -40,7 +45,26 @@ POST {{host}}/link-shortener/v1/slug
 Body JSON example:
 ```
 {
+    "username": "testing",
+    "password": "12345678",
     "fullLink": "www.google.com"
+}
+```
+
+#### Show all Links created by user
+GET {{host}}/link-shortener/v1/links?username=testing&password=12345678
+
+#### Show full link with slug (will count as 1 visit)
+GET {{host}}/link-shortener/v1/slug/:id
+
+#### Update Slug by user
+PUT {{host}}/link-shortener/v1/slug/:id
+
+Body JSON example:
+```
+{
+    "username": "testing",
+    "password": "12345678"
 }
 ```
 
