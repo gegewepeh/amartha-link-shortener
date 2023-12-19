@@ -36,7 +36,6 @@ func (pool *Pool) GetLinks(ctx context.Context, id string, userId string) ([]mod
 
 		links = append(links, link)
 	}
-	utils.PrettyLog(ctx, links)
 
 	return links, nil
 }
@@ -50,7 +49,6 @@ func (pool *Pool) GetBySlugId(ctx context.Context, id string) (*models.Link, *ut
 	WHERE slug = $1
 	RETURNING "fullLink", "visit"`
 
-	utils.Log(ctx, "GetBySlugId QUERY: %s", queryUpdate)
 	err := pool.db.QueryRow(ctx, queryUpdate, id).Scan(&fullLink, &visit)
 	if err != nil {
 		return nil, models.WrapError("Link", "NotFound", errors.New("Link Not Found"), nil)
@@ -74,7 +72,7 @@ func (pool *Pool) CreateSlug(ctx context.Context, fullLink string, slug string, 
 		return nil, models.WrapError("Link", "InternalServerError", err, nil)
 	}
 	link := models.Link{
-		Slug: "www.example.com/" + slug,
+		Slug: "https://short.ly/" + slug,
 	}
 
 	return &link, nil
@@ -85,12 +83,11 @@ func (pool *Pool) UpdateSlugId(ctx context.Context, oldSlug string, newSlug stri
 	var visit int
 
 	queryUpdate := `UPDATE links
-	SET slug = $1
+	SET slug = $1, visit = 0
 	WHERE slug = $2 AND "userId" = $3
 	RETURNING "fullLink", "visit", "slug"`
 
-	utils.Log(ctx, "GetBySlugId QUERY: %s", queryUpdate)
-	err := pool.db.QueryRow(ctx, queryUpdate, newSlug,oldSlug, userId).Scan(&fullLink, &visit, &newSlug)
+	err := pool.db.QueryRow(ctx, queryUpdate, newSlug, oldSlug, userId).Scan(&fullLink, &visit, &newSlug)
 	if err != nil {
 		return nil, models.WrapError("Link", "NotFound", errors.New("Link Not Found"), nil)
 	}
