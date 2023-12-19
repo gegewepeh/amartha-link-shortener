@@ -13,7 +13,6 @@ import (
 func (pool *Pool) GetLinks(ctx context.Context, id string, userId string) ([]models.Link, error) {
 	var links = make([]models.Link, 0)
 
-
 	query := `SELECT * FROM links WHERE "userId" = $1`
 
 	rows, err := pool.db.Query(ctx, query, userId)

@@ -1,4 +1,5 @@
 # SETUP DB
+```
 CREATE TABLE users (
 	id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
 	"username" VARCHAR ( 50 ) UNIQUE NOT NULL,
@@ -6,7 +7,9 @@ CREATE TABLE users (
 	"createdAt" TIMESTAMPTZ NOT NULL,
     "updatedAt" TIMESTAMPTZ NOT NULL
 );
+```
 
+```
 CREATE TABLE links (
 	id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
 	"userId" UUID references users(id) NOT NULL,
@@ -16,6 +19,7 @@ CREATE TABLE links (
 	"createdAt" TIMESTAMPTZ NOT NULL,
     "updatedAt" TIMESTAMPTZ NOT NULL
 );
+```
 
 ## Run Project
 
