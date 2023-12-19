@@ -75,17 +75,15 @@ Body JSON example:
 
 ## Number of possible unique slugs
 
-### With permutation formula
-k! / k! - n!
+### With repeating permutation formula
+n^r
 
-k: total possible characters
-n: length of characters picked
+n: total number of characters
+r: length of characters picked
 
 available letters "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" (have 62 length)
-k = 62
-n = 6 (length of generated characters currently used in the generator)
+n = 62
+r = 6 (length of generated characters currently used in the generator)
 
-62! / 62! - 6!
-= 62! / 56!
-= 62 x 61 x 60 x 59 x 58 x 57
-= 44,261,653,680
+62^6
+= 56,800,235,584
