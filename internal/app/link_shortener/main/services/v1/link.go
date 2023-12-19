@@ -12,7 +12,7 @@ import (
 
 func (pool *Pool) GetLinks(ctx context.Context, id string, userId string) ([]models.Link, error) {
 	var links = make([]models.Link, 0)
-	log.Println("sini", userId)
+
 
 	query := `SELECT * FROM links WHERE "userId" = $1`
 
@@ -23,7 +23,7 @@ func (pool *Pool) GetLinks(ctx context.Context, id string, userId string) ([]mod
 
 	for rows.Next() {
 		values, err := rows.Values()
-		log.Println("sini", values)
+
 		if err != nil {
 			log.Fatal("error while iterating dataset")
 		}
